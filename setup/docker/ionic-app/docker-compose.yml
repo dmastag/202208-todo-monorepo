@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    container_name: app
+    image: dmastag/202208-ionic-app
+    ports:
+      - "4200:80"
+    restart: always

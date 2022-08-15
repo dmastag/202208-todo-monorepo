@@ -30,6 +30,23 @@ docker-compose is in the same directory, here is the command to run it
 `docker-compose -f setup/docker/nest-server/docker-compose.yml up`
 
 
+I also added the option to build the Ionic App to Docker
+
+`docker build -f setup/docker/ionic-app/Dockerfile -t [repository target] .`
+
+Or in my case
+
+`docker build -f setup/docker/ionic-app/Dockerfile -t dmastag/202208-ionic-app .`
+
+And then to run it
+`docker-compose -f setup/docker/ionic-app/docker-compose.yml up`
+
+
+
+And if you want to just run both Docker Images using Compose
+
+`docker-compose -f setup/docker/docker-compose.yml up`
+
 ## Other Notes
 
 To run the Nest Server by itself just run
