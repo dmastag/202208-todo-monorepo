@@ -1,0 +1,11 @@
+version: '3.0'
+
+services:
+  nest-api:
+    container_name: nest-server
+    image: dmastag/202208-nest-server
+    environment:
+      - PORT=3333
+    ports:
+      - '3333:3333'
+    restart: always
