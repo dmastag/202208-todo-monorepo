@@ -1,9 +1,13 @@
 import MessageListItem from '../components/MessageListItem';
 import { useState } from 'react';
-import { Message, getMessages } from '../data/messages';
+import { Message, getMessages, submitMessage } from '../data/messages';
 import {
+  IonButton,
   IonContent,
   IonHeader,
+  IonInput,
+  IonItem,
+  IonLabel,
   IonList,
   IonPage,
   IonRefresher,
@@ -16,23 +20,32 @@ import './Home.css';
 
 const Home: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [text, setText] = useState<string>();
 
-  useIonViewWillEnter(() => {
-    const msgs = getMessages();
+  useIonViewWillEnter(async () => {
+    const msgs = await getMessages();
     setMessages(msgs);
   });
 
-  const refresh = (e: CustomEvent) => {
+  const refresh = async (e: CustomEvent) => {
     setTimeout(() => {
       e.detail.complete();
     }, 3000);
   };
 
+  const submitData = async () => {
+    console.log('text', text)
+    await submitMessage(text);
+    const msgs = await getMessages();
+    setMessages(msgs);
+    setText("")
+  }
+
   return (
     <IonPage id="home-page">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Inbox</IonTitle>
+          <IonTitle>Todo List</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -42,11 +55,20 @@ const Home: React.FC = () => {
 
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Inbox</IonTitle>
+            <IonTitle size="large">Todo List</IonTitle>
           </IonToolbar>
         </IonHeader>
 
         <IonList>
+
+          <IonItem className="ion-padding">
+            <IonLabel position="floating">Input Todo here</IonLabel>
+            <IonInput value={text}  onIonChange={e => setText(e.detail.value!)}></IonInput>
+            <IonButton slot="end" onClick={submitData}>
+              Submit
+            </IonButton>
+          </IonItem>
+
           {messages.map((m) => (
             <MessageListItem key={m.id} message={m} />
           ))}
