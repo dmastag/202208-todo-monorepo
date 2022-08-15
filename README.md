@@ -28,3 +28,17 @@ docker-compose is in the same directory, here is the command to run it
 
 
 `docker-compose -f setup/docker/nest-server/docker-compose.yml up`
+
+
+## Other Notes
+
+To run the Nest Server by itself just run
+
+`npx nx serve nest-server`
+
+The Nest Server has been setup to tun on localhost:3333 and can be changed using the PORT Environment Variable (as can be seen in the docker-compose.yml)
+
+
+To run the Ionic React App, please use the following command
+
+`npx nx serve ionic-app`
