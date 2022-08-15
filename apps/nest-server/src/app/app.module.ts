@@ -4,11 +4,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Todo } from './models/todos.entity';
+import { Todo } from './models/todos/entities/todo.entity';
+import { TodosModule } from './models/todos/todos.module';
 
 
 @Module({
   imports: [
+    TodosModule,
     TypeOrmModule.forRoot({
     type: 'better-sqlite3',
     database: ':memory:',
