@@ -2,6 +2,8 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "ionic-app": "apps/ionic-app",
+    "ionic-app-e2e": "apps/ionic-app-e2e",
     "nest-server": "apps/nest-server"
   }
 }
